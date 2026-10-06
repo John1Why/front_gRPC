@@ -1,0 +1,17 @@
+version: "3"
+
+tasks:
+  zapusk:
+    aliases: [run, start]
+    desc: "Запуск React-клиента"
+    deps:
+      - task: moduli
+    cmds:
+      - npm run dev
+
+  moduli:
+    desc: "Установка npm пакетов"
+    sources:
+      - package.json
+    cmds:
+      - npm install

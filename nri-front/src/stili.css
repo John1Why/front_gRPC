@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  background: #fff;
+  color: #000;
+}
+
+button {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #000;
+  color: #fff;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px;
+  width: 100%;
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.verkhnyayaPanel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 2px solid #000;
+}
+
+.meniu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.soderzhimoe {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.zagolovok {
+  font-size: 22px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.kartochka {
+  border: 2px solid #000;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.setka {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pole {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ryad {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.shagi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.shag {
+  padding: 6px 12px;
+  border: 2px solid #000;
+}
+
+.shag.aktivnyy {
+  background: #000;
+  color: #fff;
+}
+
+.listokA4 {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 10mm;
+  border: 2px solid #000;
+  background: #fff;
+}
+
+.listokZagolovok {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  border: 2px solid #000;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.listokSektsiya {
+  border: 2px solid #000;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.listokPodpis {
+  font-size: 11px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 4px;
+}
+
+.harakteristiki {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.harakteristika {
+  border: 2px solid #000;
+  padding: 6px;
+  text-align: center;
+}
+
+.harakteristikaBolshaya {
+  font-size: 20px;
+}
+
+@media (max-width: 800px) {
+  .harakteristiki {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .listokZagolovok {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .verkhnyayaPanel,
+  .bezPechati {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12px;
+  }
+
+  .listokA4 {
+    width: auto;
+    border: none;
+    padding: 0;
+  }
+
+  .soderzhimoe {
+    max-width: none;
+    padding: 0;
+  }
+
+  .kartochka {
+    page-break-inside: avoid;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 10mm;
+}
