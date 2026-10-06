@@ -1,0 +1,73 @@
+version: "3"
+
+tasks:
+  zapusk:
+    aliases: [start, up]
+    desc: "Запуск всего проекта одной командой"
+    cmds:
+      - task: baza
+      - task: generate
+      - 'echo "Клиент: http://localhost:5173"'
+      - 'echo "auth gRPC :50000 | personazh gRPC :50001 | kubiki gRPC :50002"'
+      - task: servisy
+
+  servisy:
+    desc: "Запуск микросервисов и клиента параллельно"
+    deps:
+      - task: auth
+      - task: personazh
+      - task: kubiki
+      - task: front
+
+  ostanovka:
+    aliases: [stop, down]
+    desc: "Остановка всего проекта"
+    cmds:
+      - docker compose down
+
+  baza:
+    desc: "Запуск PostgreSQL"
+    cmds:
+      - docker compose up -d --wait postgres
+
+  generate:
+    desc: "Генерация proto для всех сервисов"
+    cmds:
+      - task: generate_auth
+      - task: generate_personazh
+      - task: generate_kubiki
+
+  generate_auth:
+    dir: Proto_auth/api
+    cmds:
+      - task generate
+
+  generate_personazh:
+    dir: Proto_personazh/api
+    cmds:
+      - task generate
+
+  generate_kubiki:
+    dir: Proto_kubiki/api
+    cmds:
+      - task generate
+
+  auth:
+    dir: Auth/auth-service
+    cmds:
+      - task zapusk
+
+  personazh:
+    dir: Personazh/personazh-service
+    cmds:
+      - task zapusk
+
+  kubiki:
+    dir: Kubiki/kubiki-service
+    cmds:
+      - task zapusk
+
+  front:
+    dir: Front/nri-front
+    cmds:
+      - task zapusk
